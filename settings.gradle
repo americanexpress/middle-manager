@@ -1,0 +1,3 @@
+include 'middle-manager-core',
+  'middle-manager-ibm',
+  'test-support'

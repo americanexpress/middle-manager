@@ -1,0 +1,8 @@
+dependencies {
+  compile fileTree(dir: 'ext-jars', include: '*.jar')
+
+  compile project(':middle-manager-core')
+
+  testCompile 'junit:junit:4.12'
+  testCompile project(':test-support')
+}

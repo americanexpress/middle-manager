@@ -1,0 +1,13 @@
+# Intellij
+.idea
+*.iml
+
+# Gradle
+.gradle
+build
+
+# Other
+.DS_Store
+.directory
+
+*/ext-jars/*.jar

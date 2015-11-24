@@ -1,0 +1,80 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+  }
+}
+
+subprojects {
+  apply plugin: 'java'
+
+  repositories {
+    jcenter()
+  }
+
+  sourceCompatibility = JavaVersion.VERSION_1_6
+}
+
+[':middle-manager-core', ':middle-manager-ibm'].each {
+  project(it) { project ->
+    apply plugin: 'maven'
+    apply plugin: 'com.jfrog.bintray'
+    apply plugin: 'maven-publish'
+
+    group 'io.amex.concurrency.middle-manager'
+    version '0.1-SNAPSHOT'
+
+    task sourceJar(type: Jar, dependsOn: classes) {
+      from sourceSets.main.allJava
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+      from javadoc.destinationDir
+    }
+
+    ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
+
+    publishing {
+      publications {
+        bintray(MavenPublication) {
+          from components.java
+          groupId project.group
+          artifactId project.name
+          version project.version
+
+          artifact sourceJar {
+            classifier 'sources'
+          }
+
+          artifact javadocJar {
+            classifier 'javadoc'
+          }
+        }
+      }
+    }
+
+    bintray {
+      user = rootProject.hasProperty('bintrayUser') ? rootProject.property('bintrayUser') : 'FIXME'
+      key = rootProject.hasProperty('bintrayApiKey') ? rootProject.property('bintrayApiKey') : 'FIXME'
+      publications = ['bintray']
+
+      pkg {
+        repo = 'maven'
+        licenses = ['Copyfree']
+        vcsUrl = 'https://github.com/americanexpress/middle-manager'
+        name = project.group
+        userOrg = 'americanexpress'
+
+        version {
+          name = project.version
+          released = new Date()
+          if (project.isReleaseVersion) {
+            vcsTag = 'v' + project.version
+          }
+        }
+      }
+    }
+  }
+}
