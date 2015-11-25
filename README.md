@@ -1,3 +1,5 @@
+[![Build Status](https://semaphoreci.com/api/v1/projects/4ec7138f-7652-45d2-9b09-a46ed96dfb04/615371/badge.svg)](https://semaphoreci.com/americanexpress/middle-manager)
+
 # What is Middle Manager?
 
 Like any good manager, it insulates you from unpleasant things. The goal is to help you migrate off of the `com.ibm.websphere.asynchbeans.WorkManager` API. It provides a **`WorkExecutor`** interface that's similar to [IBM's `WorkManager`](http://www-01.ibm.com/support/knowledgecenter/SSEQTP_7.0.0/com.ibm.websphere.javadoc.doc/web/apidocs/com/ibm/websphere/asynchbeans/WorkManager.html), but uses the niceties of `Executor` and friends like `Future`. The API is purposely similar, so porting should be straightforward.
