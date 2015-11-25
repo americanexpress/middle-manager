@@ -23,8 +23,8 @@ subprojects {
     apply plugin: 'com.jfrog.bintray'
     apply plugin: 'maven-publish'
 
-    group 'io.amex.concurrency.middle-manager'
-    version '1.0'
+    group 'io.aexp.concurrency.middle-manager'
+    version '1.0.1-SNAPSHOT'
 
     task sourceJar(type: Jar, dependsOn: classes) {
       from sourceSets.main.allJava

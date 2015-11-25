@@ -10,7 +10,7 @@ It's compatible with Java 6 because if you're using `WorkManager`, you're probab
 
 At a high level:
 
-- Add dependencies on `io.amex.concurrency.middle-manager:middle-manager-core` and `io.amex.concurrency.middle-manager:middle-manager-ibm`.
+- Add dependencies on `io.aexp.concurrency.middle-manager:middle-manager-core` and `io.aexp.concurrency.middle-manager:middle-manager-ibm`.
 - Migrate implementations of `Work` to implement only `Runnable`. `Work` extends `Runnable`, so you can leave `Work` there for now if you want to use the same `Work` implementations in both old `WorkManager` code and new `WorkExecutor` code. 
 - Wrap `WorkManager` instances with a `WorkManagerWorkExecutor`. Instead of casting `WorkItem#getResult()` to the original `Work` submitted to `WorkManager#doWork()`, you'll get a `Future<T>` where `T` is your `Runnable` implementation.
 - Remove any remaining `implements Work` -- simplify it to just `implements Runnable`.
