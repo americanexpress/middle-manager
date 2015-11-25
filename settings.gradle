@@ -1,3 +1,6 @@
 include 'middle-manager-core',
-  'middle-manager-ibm',
   'test-support'
+
+if (!hasProperty('middleManager.excludeIbmSubproject')) {
+  include 'middle-manager-ibm' 
+}

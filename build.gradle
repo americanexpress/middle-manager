@@ -17,7 +17,13 @@ subprojects {
   sourceCompatibility = JavaVersion.VERSION_1_6
 }
 
-[':middle-manager-core', ':middle-manager-ibm'].each {
+def bintrayProjects = [':middle-manager-core']
+
+if (!hasProperty('middleManager.excludeIbmSubproject')) {
+  bintrayProjects += ':middle-manager-ibm'
+}
+
+bintrayProjects.each {
   project(it) { project ->
     apply plugin: 'maven'
     apply plugin: 'com.jfrog.bintray'

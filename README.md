@@ -73,4 +73,10 @@ Once you're that far, it's a small leap to making `FooTask` implement `Callable<
 
 # Building
 
+If you want to build everything except the IBM subproject, add the `middleManager.excludeIbmSubproject` Gradle property to your build, as in:
+
+```
+./gradlew build -PmiddleManager.excludeIbmSubproject
+```
+
 Unfortunately, there isn't a publicly available source for the `com.ibm.websphere.asynchbeans.*` classes, so this project's IBM subproject will not build without some manual setup. In your WebSphere installation, there is probably an `asynchbeans.jar` file somewhere that has those classes in it. Drop that jar in the `middle-manager-ibm/ext-jars` dir within this project and gradle will find the classes it needs to build middle-manager. If you have a `runtime` jar, that may also contain the `WorkManager` classes.
