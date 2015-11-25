@@ -24,7 +24,7 @@ subprojects {
     apply plugin: 'maven-publish'
 
     group 'io.aexp.concurrency.middle-manager'
-    version '1.0.1-SNAPSHOT'
+    version '1.0.1'
 
     task sourceJar(type: Jar, dependsOn: classes) {
       from sourceSets.main.allJava
