@@ -10,12 +10,36 @@ It's compatible with Java 6 because if you're using `WorkManager`, you're probab
 
 # How do I use it?
 
-At a high level:
+Artifacts are available in [JCenter](https://bintray.com/bintray/jcenter).
 
-- Add dependencies on `io.aexp.concurrency.middle-manager:middle-manager-core` and `io.aexp.concurrency.middle-manager:middle-manager-ibm`.
+Gradle:
+
+```groovy
+compile 'io.aexp.concurrency.middle-manager:middle-manager-core:1.0.1'
+compile 'io.aexp.concurrency.middle-manager:middle-manager-ibm:1.0.1'
+```
+
+Maven:
+
+```xml
+<dependency>
+    <groupId>io.aexp.concurrency.middle-manager</groupId>
+    <artifactId>middle-manager-core</artifactId>
+    <version>1.0.1</version>
+</dependency>
+<dependency>
+    <groupId>io.aexp.concurrency.middle-manager</groupId>
+    <artifactId>middle-manager-ibm</artifactId>
+    <version>1.0.1</version>
+</dependency>
+```
+
+At a high level, these are the steps to use this library :
+
+- Add dependencies on `io.aexp.concurrency.middle-manager:middle-manager-core` and `io.aexp.concurrency.middle-manager:middle-manager-ibm` (see above).
 - Migrate implementations of `Work` to implement only `Runnable`. `Work` extends `Runnable`, so you can leave `Work` there for now if you want to use the same `Work` implementations in both old `WorkManager` code and new `WorkExecutor` code. 
 - Wrap `WorkManager` instances with a `WorkManagerWorkExecutor`. Instead of casting `WorkItem#getResult()` to the original `Work` submitted to `WorkManager#doWork()`, you'll get a `Future<T>` where `T` is your `Runnable` implementation.
-- Remove any remaining `implements Work` -- simplify it to just `implements Runnable`.
+- Remove any remaining `implements Work` -- simplify it to just `implements Runnable`. You can also remove the extra method implementations that Work requires that are now no longer needed.
 - Migrate usage of `WorkManagerWorkExecutor` to use `ExecutorWorkExecutor` instead.
 - Remove all code that created or otherwise accessed `WorkManager` instances since they're no longer used to power the `WorkExecutor`s
 
