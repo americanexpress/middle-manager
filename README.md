@@ -106,3 +106,16 @@ If you want to build everything except the IBM subproject, add the `middleManage
 ```
 
 Unfortunately, there isn't a publicly available source for the `com.ibm.websphere.asynchbeans.*` classes, so this project's IBM subproject will not build without some manual setup. In your WebSphere installation, there is probably an `asynchbeans.jar` file somewhere that has those classes in it. Drop that jar in the `middle-manager-ibm/ext-jars` dir within this project and gradle will find the classes it needs to build middle-manager. If you have a `runtime` jar, that may also contain the `WorkManager` classes.
+
+# Contributing
+
+We welcome Your interest in the American Express Open Source Community on Github. Any Contributor to any Open Source Project managed by the American Express Open Source Community must accept and sign an Agreement indicating agreement to the terms below. Except for the rights granted in this Agreement to American Express and to recipients of software distributed by American Express, You reserve all right, title, and interest, if any, in and to Your Contributions. Please [fill out the Agreement](http://goo.gl/forms/mIHWH1Dcuy).
+
+# License
+
+Any contributions made under this project will be governed by the [Apache License 2.0](https://github.com/americanexpress/middle-manager/blob/master/LICENSE.txt).
+
+# Code of Conduct
+
+This project adheres to the [American Express Community Guidelines](https://github.com/americanexpress/middle-manager/wiki/Code-of-Conduct).
+By participating, you are expected to honor these guidelines.
